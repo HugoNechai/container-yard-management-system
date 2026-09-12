@@ -1,130 +1,139 @@
-Container Yard Management System
+# Container Yard Management System
 
-A web-based container yard management platform developed during a software development internship at Hovmark Data ApS (Esbjerg, Denmark).
+A web-based platform developed during my software development internship at **Hovmark Data ApS in Esbjerg, Denmark**, supporting container yard operations through dedicated workflows for clients, drivers, and administrators.
 
-The system was designed to support daily port operations through role-based workflows for clients, drivers, and administrators, covering the complete lifecycle of container visits from order creation to billing.
+The system covers container visits from order creation and arrival through yard placement, operational tasks, departure, and billing.
 
-Project Overview
+> This repository is a portfolio case study containing project documentation and screenshots. The company’s source code is private and is not included.
 
-The platform provides a centralized solution for managing container yard operations, including:
+## Project Context
 
-* Container visit and order registration
-* Arrival and departure tracking
-* Yard slot assignment
-* Operational task management
-* Customer visibility into container status
-* Billing and tariff management
-* User and client administration
+| Detail | Description |
+| --- | --- |
+| Company | Hovmark Data ApS |
+| Location | Esbjerg, Denmark |
+| Role | Lead Developer |
+| Project type | Internship and final examination project for the AP Degree in Computer Science |
+| Project period | October 2025 – January 2026 |
+| Full internship period | August 2025 – January 2026 |
 
-The project was developed as a final internship and examination project for the AP Computer Science program.
+## My Contribution
 
-Key Features
+I led the development of the platform and implemented core functionality across the frontend, backend, database, and deployment.
 
-Client Portal
+My work included:
 
-* Create and manage container orders
-* View planned and actual container visits
-* Track order status in real time
-* Access billing records and invoices
+- Designing and implementing workflows for clients, drivers, and administrators.
+- Building API endpoints and business logic for orders, container visits, operational tasks, yard placement, and billing.
+- Modelling the yard structure and capacity constraints, including sectors, rows, slots, and stacking rules.
+- Generating more than **3,000 yard positions** to support assignment logic and workflow testing.
+- Developing a two-stage slot assignment algorithm combining constraint filtering and scoring.
+- Supporting manual slot selection with recommendations and human-readable explanations.
+- Implementing JWT authentication, role-based access control, and consistent state transitions.
+- Validating API behaviour through Swagger and checking end-to-end workflows with the company stakeholder.
+- Deploying the application to the company’s server environment using Webmin.
 
-Driver Portal
+## Project Overview
 
-* View planned arrivals
-* Activate container arrivals
-* Assign yard slots manually or automatically
-* Execute operational tasks
-* Manage container movements inside the yard
+The platform brings together the main functions required to manage a container yard:
 
-Admin Portal
+- Container order and visit registration.
+- Planned and actual arrival and departure tracking.
+- Yard slot assignment.
+- Operational task management.
+- Customer access to container status.
+- Billing and tariff management.
+- User and client administration.
 
-* Manage users and clients
-* Create and manage orders
-* Create operational tasks
-* Configure yard structure
-* Manage tariffs and billing
-* Monitor all active and completed operations
+## Role-Based Workflows
 
-Yard Management Logic
+### Client Portal
 
-The system includes a structured yard model consisting of:
+- Create and manage container orders.
+- View planned and actual container visits.
+- Check order and container status.
+- Access billing records and invoices.
 
-* Sectors
-* Rows
-* Slots
+### Driver Portal
 
-The assignment engine supports:
+- View planned arrivals.
+- Register container arrivals.
+- Assign yard slots manually or automatically.
+- Execute operational tasks.
+- Manage container movements within the yard.
 
-* Automatic slot allocation
-* Manual assignment with recommendations
-* Power-enabled container positions
-* Capacity constraints
-* Operational efficiency scoring
-* Explainable recommendations
+### Administrator Portal
 
-More than 3,000 yard positions were generated and used for testing operational workflows.
+- Manage users and clients.
+- Create and manage orders and operational tasks.
+- Configure the yard structure.
+- Manage tariffs and billing.
+- Monitor active and completed operations.
 
-Technology Stack
+## Yard Management and Slot Assignment
 
-Frontend
+The yard is represented through **sectors, rows, and slots**, with capacity and stacking constraints used to determine valid container positions.
 
-* Blazor WebAssembly
+Slot assignment uses two stages:
 
-Backend
+1. **Constraint filtering:** identify positions that satisfy the applicable placement rules.
+2. **Scoring:** rank valid positions to support operationally suitable placement.
 
-* ASP.NET Minimal API
-* JWT Authentication
-* Role-Based Authorization
+The assignment functionality supports:
 
-Database
+- Automatic slot allocation.
+- Manual placement with recommendations.
+- Power-enabled container positions.
+- Capacity and stacking constraints.
+- Operational efficiency scoring.
+- Human-readable explanations for recommendations.
 
-* SQL Database
+More than **3,000 yard positions** were generated and used to support assignment logic and test operational workflows.
 
-Deployment
+## Technology Stack
 
-* Webmin-managed Linux environment
+| Area | Technologies |
+| --- | --- |
+| Frontend | Blazor WebAssembly |
+| Backend | C#, ASP.NET Core Minimal APIs |
+| Data storage | SQL database |
+| Authentication and access | JWT, role-based authorisation |
+| API validation | Swagger |
+| Deployment | Webmin-managed Linux server environment |
 
-Architecture
+## Architecture
 
-The solution follows a three-layer architecture:
+The application separates responsibilities across three layers:
 
-User → Blazor Frontend → ASP.NET API → SQL Database
+- **Presentation:** the Blazor WebAssembly frontend provides interfaces for clients, drivers, and administrators.
+- **Application:** the ASP.NET Core API handles requests, business rules, workflow transitions, and access control.
+- **Data:** the SQL database stores application records and relationships.
 
-Authentication is handled through JWT tokens and role-based access control.
+The frontend communicates with the API, which applies the relevant business rules and accesses the database. JWT authentication and role-based authorisation control access to protected functionality.
 
-Screenshots
+## Validation and Deployment
 
-Project screenshots demonstrating client, driver, and administrator workflows are available in the repository.
+Validation included API checks through Swagger and end-to-end workflow checks with the company stakeholder.
 
-Business Value
+These checks covered the interaction between user roles, order and visit states, slot assignment, and operational tasks.
 
-The system replaces manual and legacy workflows with a dedicated operational platform tailored for container yard management.
+The application was deployed to the company’s server environment using Webmin.
 
-Key benefits include:
+## Business Purpose
 
-* Improved operational visibility
-* Consistent state management
-* Reduced manual coordination
-* Structured yard allocation
-* Centralized billing management
-* Role-based access control
+The platform was designed to support daily container yard operations through a shared system with structured workflows and role-specific interfaces.
 
-Project Context
+Its intended benefits include:
 
-Company: Hovmark Data ApS
-Location: Esbjerg, Denmark
-Project Type: Internship & Final Examination Project
-Period: October 2025 – January 2026
+- Clearer visibility into container status and ongoing operations.
+- Consistent handling of workflow states.
+- Less reliance on manual coordination.
+- Structured yard allocation.
+- Centralised tariff and billing management.
+- Controlled access for clients, drivers, and administrators.
 
-Future Improvements
+## Screenshots
 
-Potential future enhancements include:
+The screenshots in this repository demonstrate the application’s client, driver, and administrator interfaces, including examples of container workflows and yard management functionality.
 
-* Interactive yard map visualization
-* Camera-based container recognition
-* Offline/mobile-first support
-* Advanced operational analytics
-* Additional automation for yard planning
-
-⸻
-
-This repository contains project documentation, screenshots, and case study materials demonstrating the design, implementation, and deployment of the Container Yard Management System.
+They provide a visual overview of the project while keeping the company’s source code private.
